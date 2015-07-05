@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<hmtl>
+<head>
+	<title>Log Test</title>
+</head>
+<body>
+	<button id="submit">Send</button>
+	<script type="text/javascript">
+	(function() {
+		'use strict';
+
+		var button = document.getElementById('submit');
+
+		function sendLog(message) {
+			var el = document.createElement('img');
+			el.src = 'http://localhost:8080/logger/?message='+ encodeURIComponent(message);
+			el.style.display = 'none';
+			document.body.appendChild(el);
+		}
+
+		function logMessage(message, send) {
+			console.log(message);
+
+			if(send)
+				sendLog(message);
+		}
+
+		logMessage('Page loaded', true);
+
+		button.addEventListener('click', function(e) {
+			logMessage('The button was clicked!', true);
+		});
+	}());
+	</script>
+</body>
+</html>
